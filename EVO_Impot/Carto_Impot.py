@@ -35,6 +35,14 @@ communes_gdf
 # Fusionner le dataframe (DF_total_impot_2021) des revenus fiscaux avec le GeoDataFrame des communes (communes_GDF)
 total_impot_2021_gdf = communes_gdf.merge(df_total_impot_2021, how='inner', left_on='NOM', right_on='Unnamed: 3')
 
+#t'as juste merge sur les noms des communes (NOM et Unnamed: 3 ) Manque l'application sur rev Fiscaux 
+# Trier le GeoDataFrame par la colonne 'Unnamed: 7'
+#total_impot_2021_sorted = total_impot_2021_gdf.sort_values(by='Unnamed': 7)
+
+# Tracer le GeoDataFrame trié
+#total_impot_2021_sorted.plot(column='NOM', legend=True)
+
+
 #Afficher carte 
 total_impot_2021_gdf.plot()
 plt.show()
