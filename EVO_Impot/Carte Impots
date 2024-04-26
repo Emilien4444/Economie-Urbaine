@@ -1,0 +1,46 @@
+# Importe les biblios
+import requests
+import os
+import zipfile
+import json
+import pandas as pd
+import geopandas as gpd
+from shapely.geometry import Point
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.max_rows', 500)
+#import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
+#plt.style.use('seaborn')
+
+
+# Charger les données sur les revenus fiscaux des communes
+df_impot_2021 = pd.read_excel("C:/Users/TF-ST/Documents/Flavie/Projet Eco Urbaine/ircom_communes_complet_revenus_2020.xlsx", skiprows=7)
+
+# Supprimer les doublons
+df_impot_2021 = df_impot_2021.drop_duplicates()
+
+# Filtrer les lignes où le revenu fiscal est "Total"
+df_total_impot_2021 = df_impot_2021[df_impot_2021["Unnamed: 4"] == "Total"]
+
+# Charger le fichier shapefile des contours des communes françaises
+communes_shapefile = "C:/Users/TF-ST/Documents/Flavie/Projet Eco Urbaine/COMMUNE.shp"
+communes_gdf = gpd.read_file(communes_shapefile)
+
+# Fusionner les données des revenus fiscaux avec les contours des communes
+total_impot_2021_gdf = communes_gdf.merge(df_total_impot_2021, how='inner', left_on='NOM', right_on='Unnamed: 3')
+
+# Afficher la carte des communes avec une couleur de base
+fig, ax = plt.subplots(figsize=(10, 10))
+ax.set_aspect('equal')
+ax.set_axis_off()
+communes_gdf.plot(ax=ax, color='lightgrey', edgecolor='black')
+
+# Ajouter les données d'impôts avec une coloration basée sur le montant de l'impôt
+total_impot_2021_gdf.plot(ax=ax, column='Unnamed: 6', cmap='Oranges', legend=True)
+
+# Ajouter un titre à la carte
+plt.title('Impôts par commune (2021)', fontsize=16)
+
+# Afficher la carte
+plt.show()
