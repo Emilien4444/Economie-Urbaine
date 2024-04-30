@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import geopandas as gpd
 import matplotlib.colors
-import matplotlib.cm a
+import matplotlib.cm as cm
 
 file = "prix_immo2022.xlsx"
 geo = "sh_communes.shp"
