@@ -5,6 +5,7 @@ import matplotlib.colors
 import matplotlib.cm as cm
 import numpy as np
 
+#on importe les fichiers
 file = r"C:\Users\ewena\Documents\Ecole\Economie\macro\projet\dv3f_prix_volumes_communes_2020_2022.xlsx"  
 geo = r"C:\Users\ewena\Documents\Ecole\Economie\macro\projet\COMMUNE.shp" 
 
@@ -20,7 +21,7 @@ cdt_2 = np.isnan(df_pi["pxm2_median_cod121"])
 df_pi["pxm2_median_all"] = np.where(cdt_1, np.where(cdt_2, np.nan,df_pi["pxm2_median_cod121"]), np.where(cdt_2,df_pi["pxm2_median_cod111"], (df_pi["pxm2_median_cod121"]+df_pi["pxm2_median_cod111"])/2))
 #print(df_pi['pxm2_median_all'])
 
-geo_df = gpd.read_file(geo) #g #avec tout fichiers ds un meme dossier
+geo_df = gpd.read_file(geo) #g #avec tout fichiers dans un meme dossier
 
 df_f = geo_df.merge(df_pi, left_on="INSEE_COM", right_on="codgeo")
 
@@ -28,6 +29,7 @@ nan_count = df_pi["pxm2_median_all"].isna().sum()
 
 nan_count
 
+#affichage
 fig, ax = plt.subplots(1, 1, figsize=(30, 15))
 cmap = cm.viridis
 
