@@ -34,3 +34,41 @@ villes_plus_riches = villes_plus_riches.sort_values(by='Colonne_6', ascending=Fa
 # Afficher les villes les plus riches
 print("Les villes les plus riches :")
 print(villes_plus_riches[['Colonne_3', 'Colonne_6']])
+
+# Obtenez les valeurs minimales et maximales des villes les plus vhère définir les limites de la légende
+vmin = merged_gdf['Colonne_6'].min()
+vmax = merged_gdf['Colonne_6'].max()
+
+# Définir les limites de la zone à afficher (France métropolitaine)
+x_min, x_max = -5, 10   
+y_min, y_max = 41, 52  
+
+# Coordonnées de Paris
+# x_min, x_max = 2.2, 2.5
+# y_min, y_max = 48.8, 48.95
+
+# Coordonnées de la région lyonnaise
+# x_min, x_max = 4.6, 5.1
+# y_min, y_max = 45.4, 45.95
+
+# Coordonnées de la région toulousaine
+# x_min, x_max = 1.2, 1.7
+# y_min, y_max = 43.2, 43.95
+
+# Coordonnées de la région de Nice
+# x_min, x_max = 6.9, 7.7
+# y_min, y_max = 43.4, 43.95
+
+# Coordonnées de Cannes
+# x_min, x_max = 6.8, 7.2
+# y_min, y_max = 43.45, 43.6
+
+
+# Afficher la carte
+fig, ax = plt.subplots(figsize=(10, 10))
+merged_gdf.plot(column='Colonne_6', cmap=cm.viridis, linewidth=0.8, ax=ax, edgecolor='0.8',alpha=0.5, legend=False, vmin=vmin, vmax=vmax)
+ax.set_xlim(x_min, x_max)
+ax.set_ylim(y_min, y_max)
+ax.axis('on')
+plt.title('Les villes les plus riches en France')
+plt.show()
