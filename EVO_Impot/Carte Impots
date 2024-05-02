@@ -73,3 +73,15 @@ ax.axis('on')
 plt.title('Les villes les plus riches en France, Cas de "Nom Ville"')
 plt.show()
 
+import matplotlib.pyplot as plt
+
+# Afficher un histogramme des 20 premières villes les plus riches
+plt.figure(figsize=(10, 6))
+plt.bar(villes_plus_riches['Colonne_3'].head(20), villes_plus_riches['Colonne_6'].head(20))
+plt.xlabel('Ville')
+plt.ylabel('Revenu fiscal de référence des foyers fiscaux')
+plt.title('Revenus fiscaux des 20 premières villes les plus riches')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.show()
+
