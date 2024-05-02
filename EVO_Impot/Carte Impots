@@ -66,9 +66,10 @@ y_min, y_max = 41, 52
 
 # Afficher la carte
 fig, ax = plt.subplots(figsize=(10, 10))
-merged_gdf.plot(column='Colonne_6', cmap=cm.viridis, linewidth=0.8, ax=ax, edgecolor='0.8',alpha=0.5, legend=False, vmin=vmin, vmax=vmax)
+merged_gdf.plot(column='Colonne_6', cmap=cm.viridis, linewidth=0.8, ax=ax, edgecolor='0.8', alpha=0.5, legend=True, vmin=vmin, vmax=vmax)
 ax.set_xlim(x_min, x_max)
 ax.set_ylim(y_min, y_max)
 ax.axis('on')
-plt.title('Les villes les plus riches en France')
+plt.title('Les villes les plus riches en France, Cas de "Nom Ville"')
 plt.show()
+
