@@ -35,6 +35,10 @@ villes_plus_riches = villes_plus_riches.sort_values(by='Colonne_6', ascending=Fa
 print("Les villes les plus riches :")
 print(villes_plus_riches[['Colonne_3', 'Colonne_6']])
 
+# Charger les données sur les contours des communes françaises
+communes_shapefile = "C:/Users/TF-ST/Documents/Flavie/Projet Eco Urbaine/COMMUNE.shp"
+communes_gdf = gpd.read_file(communes_shapefile)
+
 # Charger les données des arrondissements
 arrondissements_gdf = gpd.read_file("C:/Users/TF-ST/Documents/Flavie/Projet Eco Urbaine/arrondissements.shp")
 
