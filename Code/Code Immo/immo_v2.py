@@ -41,3 +41,13 @@ com_map = df_f.plot(column="pxm2_median_all", ax=ax, legend=True, legend_kwds={'
 
 plt.title("carte des prix médians de la moyenne entre prix par m2 pour appartement et maisons par communes de France.")
 plt.show()
+
+
+tl.figure(figsize(10, 6))
+plt.bar(df_m["libgeo_x"].head(20), df_m["pxm2_median_all"].head(20))
+plt.xlabel("Prix median du m2 pour maisons & appartements")
+plt.ylabel("Prix median par m2 pour les 20 premières villes les plus chères")
+plt.title("Prix mediand du m2 pour les 20 villes les plus chères")
+plt.xticks(rotation=45, ha="right")
+plt.tight_layout()
+plt.show()
