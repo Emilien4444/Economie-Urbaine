@@ -35,6 +35,15 @@ villes_plus_riches = villes_plus_riches.sort_values(by='Colonne_6', ascending=Fa
 print("Les villes les plus riches :")
 print(villes_plus_riches[['Colonne_3', 'Colonne_6']])
 
+# Charger les données des arrondissements
+arrondissements_gdf = gpd.read_file("C:/Users/TF-ST/Documents/Flavie/Projet Eco Urbaine/arrondissements.shp")
+
+# Projeter les arrondissements dans le CRS des communes
+arrondissements_gdf = arrondissements_gdf.to_crs(communes_gdf.crs)
+
+# Effectuer l'intersection
+merged_gdf = gpd.overlay(arrondissements_gdf, communes_gdf, how='intersection')
+
 # Obtenez les valeurs minimales et maximales des villes les plus vhère définir les limites de la légende
 vmin = merged_gdf['Colonne_6'].min()
 vmax = merged_gdf['Colonne_6'].max()
